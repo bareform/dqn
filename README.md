@@ -58,6 +58,16 @@ After training for 100000 steps, you can find results similiar to the image at `
 
 <img src="assets/cartpole-v1/cartpole-v1.gif" width="512" alt="cartpole">
 
+To train an `Acrobot-v1` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/acrobot-v1.toml"
+```
+
+After training for 300000 steps, you can find results similiar to the image at `./assets/acrobot-v1/acrobot-v1.gif`:
+
+<img src="assets/acrobot-v1/acrobot-v1.gif" width="512" alt="acrobot">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method
