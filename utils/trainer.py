@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument(
         "--environment",
         type=str,
-        choices=["frozenlake-v1"],
+        choices=["frozenlake-v1", "cartpole-v1"],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
     )
@@ -142,10 +142,23 @@ def main():
 
     if args.environment == "frozenlake-v1":
         env = gym.make("FrozenLake-v1", map_name=args.map_name, is_slippery=False)
-        env.action_space.seed(args.random_seed)
-        state, _ = env.reset(seed=args.random_seed)
         state_dim = env.observation_space.n
         action_dim = env.action_space.n
+    elif args.environment == "cartpole-v1":
+        env = gym.make("CartPole-v1")
+        state_dim = env.observation_space.shape[0]
+        action_dim = env.action_space.n
+
+    env.action_space.seed(args.random_seed)
+    state, _ = env.reset(seed=args.random_seed)
+
+    def encode_state(observation):
+        if args.environment == "frozenlake-v1":
+            return F.one_hot(
+                torch.as_tensor(observation, dtype=torch.long, device=device),
+                num_classes=state_dim,
+            ).float()
+        return torch.as_tensor(observation, dtype=torch.float32, device=device)
 
     model = DQN(
         state_dim=state_dim,
@@ -184,12 +197,8 @@ def main():
         if random.random() < epsilon:
             action = env.action_space.sample()
         else:
-            state_input = F.one_hot(
-                torch.tensor(state, dtype=torch.long, device=device),
-                num_classes=state_dim,
-            ).float()
             with torch.no_grad():
-                action = int(model(state_input).argmax().item())
+                action = int(model(encode_state(state)).argmax().item())
 
         next_state, reward, terminated, truncated, _ = env.step(action)
         replay_buffer.append(
@@ -206,14 +215,10 @@ def main():
             for _ in range(args.gradient_steps):
                 batch = random.sample(replay_buffer, args.batch_size)
                 states, actions, rewards, next_states, terminations = zip(*batch)
-                states_input = F.one_hot(
-                    torch.tensor(states, dtype=torch.long, device=device),
-                    num_classes=state_dim,
-                ).float()
-                next_states_input = F.one_hot(
-                    torch.tensor(next_states, dtype=torch.long, device=device),
-                    num_classes=state_dim,
-                ).float()
+                states_input = torch.stack([encode_state(s) for s in states])
+                next_states_input = torch.stack(
+                    [encode_state(s) for s in next_states]
+                )
                 actions_tensor = torch.tensor(
                     actions, dtype=torch.long, device=device
                 ).unsqueeze(1)
@@ -259,11 +264,18 @@ def main():
     checkpoint_dir = os.path.join(args.checkpoint_dir)
     os.makedirs(checkpoint_dir, exist_ok=True)
 
-    checkpoint_file = os.path.join(checkpoint_dir, f"{args.environment}_{args.map_name}_{args.n_steps}.pth")
+    environment_name = args.environment
+    map_name = None
+    if args.environment == "frozenlake-v1":
+        environment_name = f"{args.environment}_{args.map_name}"
+        map_name = args.map_name
+    checkpoint_file = os.path.join(
+        checkpoint_dir, f"{environment_name}_{args.n_steps}.pth"
+    )
     torch.save({
         "dqn": model.state_dict(),
         "environment": args.environment,
-        "map_name": args.map_name,
+        "map_name": map_name,
         "state_dim": state_dim,
         "action_dim": action_dim,
         "W": args.W,

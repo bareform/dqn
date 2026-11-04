@@ -48,6 +48,16 @@ After training for 500000 steps, you can find results similiar to the image at `
 
 <img src="assets/frozenlake-v1/frozenlake-v1-8x8.gif" width="512" alt="frozenlake">
 
+To train a `CartPole-v1` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/cartpole-v1.toml"
+```
+
+After training for 100000 steps, you can find results similiar to the image at `./assets/cartpole-v1/cartpole-v1.gif`:
+
+<img src="assets/cartpole-v1/cartpole-v1.gif" width="512" alt="cartpole">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method
