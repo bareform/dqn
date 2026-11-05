@@ -87,6 +87,16 @@ After training for 120000 steps, you can find results similiar to the image at `
 
 <img src="assets/mountaincar-v0/mountaincar-v0.gif" width="512" alt="mountaincar">
 
+To train a `CliffWalking-v1` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/cliffwalking-v1.toml"
+```
+
+After training for 100000 steps, you can find results similiar to the image at `./assets/cliffwalking-v1/cliffwalking-v1.gif`:
+
+<img src="assets/cliffwalking-v1/cliffwalking-v1.gif" width="512" alt="cliffwalking">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method

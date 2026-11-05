@@ -28,6 +28,7 @@ def parse_args():
             "acrobot-v1",
             "taxi-v4",
             "mountaincar-v0",
+            "cliffwalking-v1",
         ],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
@@ -166,12 +167,16 @@ def main():
         env = gym.make("MountainCar-v0")
         state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.n
+    elif args.environment == "cliffwalking-v1":
+        env = gym.make("CliffWalking-v1", max_episode_steps=1000)
+        state_dim = env.observation_space.n
+        action_dim = env.action_space.n
 
     env.action_space.seed(args.random_seed)
     state, _ = env.reset(seed=args.random_seed)
 
     def encode_state(observation):
-        if args.environment in ("frozenlake-v1", "taxi-v4"):
+        if args.environment in ("frozenlake-v1", "taxi-v4", "cliffwalking-v1"):
             return F.one_hot(
                 torch.as_tensor(observation, dtype=torch.long, device=device),
                 num_classes=state_dim,
