@@ -77,6 +77,16 @@ After training for 500000 steps, you can find results similiar to the image at `
 
 <img src="assets/taxi-v4/taxi-v4.gif" width="512" alt="taxi">
 
+To train a `MountainCar-v0` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/mountaincar-v0.toml"
+```
+
+After training for 120000 steps, you can find results similiar to the image at `./assets/mountaincar-v0/mountaincar-v0.gif`:
+
+<img src="assets/mountaincar-v0/mountaincar-v0.gif" width="512" alt="mountaincar">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method

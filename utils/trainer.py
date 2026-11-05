@@ -22,7 +22,13 @@ def parse_args():
     parser.add_argument(
         "--environment",
         type=str,
-        choices=["frozenlake-v1", "cartpole-v1", "acrobot-v1", "taxi-v4"],
+        choices=[
+            "frozenlake-v1",
+            "cartpole-v1",
+            "acrobot-v1",
+            "taxi-v4",
+            "mountaincar-v0",
+        ],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
     )
@@ -155,6 +161,10 @@ def main():
     elif args.environment == "taxi-v4":
         env = gym.make("Taxi-v4")
         state_dim = env.observation_space.n
+        action_dim = env.action_space.n
+    elif args.environment == "mountaincar-v0":
+        env = gym.make("MountainCar-v0")
+        state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.n
 
     env.action_space.seed(args.random_seed)
