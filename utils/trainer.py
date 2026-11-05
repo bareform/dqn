@@ -290,7 +290,7 @@ def main():
     environment_name = args.environment
     map_name = None
     if args.environment == "frozenlake-v1":
-        environment_name = f"{args.environment}_{args.map_name}"
+        environment_name = f"{args.environment}-{args.map_name}"
         map_name = args.map_name
     checkpoint_file = os.path.join(
         checkpoint_dir, f"{environment_name}_{args.n_steps}.pth"
