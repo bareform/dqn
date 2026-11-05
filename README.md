@@ -68,6 +68,15 @@ After training for 300000 steps, you can find results similiar to the image at `
 
 <img src="assets/acrobot-v1/acrobot-v1.gif" width="512" alt="acrobot">
 
+To train a `Taxi-v4` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/taxi-v4.toml"
+```
+After training for 500000 steps, you can find results similiar to the image at `./assets/taxi-v4/taxi-v4.gif`:
+
+<img src="assets/taxi-v4/taxi-v4.gif" width="512" alt="taxi">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method

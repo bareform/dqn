@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument(
         "--environment",
         type=str,
-        choices=["frozenlake-v1", "cartpole-v1", "acrobot-v1"],
+        choices=["frozenlake-v1", "cartpole-v1", "acrobot-v1", "taxi-v4"],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
     )
@@ -152,12 +152,16 @@ def main():
         env = gym.make("Acrobot-v1")
         state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.n
+    elif args.environment == "taxi-v4":
+        env = gym.make("Taxi-v4")
+        state_dim = env.observation_space.n
+        action_dim = env.action_space.n
 
     env.action_space.seed(args.random_seed)
     state, _ = env.reset(seed=args.random_seed)
 
     def encode_state(observation):
-        if args.environment == "frozenlake-v1":
+        if args.environment in ("frozenlake-v1", "taxi-v4"):
             return F.one_hot(
                 torch.as_tensor(observation, dtype=torch.long, device=device),
                 num_classes=state_dim,
