@@ -97,7 +97,7 @@ After training for 100000 steps, you can find results similiar to the gif at `./
 
 <img src="assets/cliffwalking-v1/cliffwalking-v1.gif" width="512" alt="cliffwalking">
 
-To train a `Pendulum-v1` DQN using 11 evenly spaced discrete torque choices:
+To train a `Pendulum-v1` DQN:
 
 ```
 python3 -m utils.trainer --config="./configs/pendulum-v1.toml"

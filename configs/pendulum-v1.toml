@@ -1,5 +1,6 @@
 [environment]
 environment = "pendulum-v1"
+action_values = 11
 
 [model]
 depth = 2

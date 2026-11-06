@@ -138,6 +138,12 @@ def parse_args():
         default=0,
         help="Random seed for reproducibility (default: 0).",
     )
+    parser.add_argument(
+        "--action_values",
+        type=int,
+        default=11,
+        help="Number of discrete action values for continuous-action environments.",
+    )
     args = parser.parse_args()    
     return args
 
@@ -177,7 +183,7 @@ def main():
     elif args.environment == "pendulum-v1":
         env = gym.make("Pendulum-v1")
         state_dim = env.observation_space.shape[0]
-        action_dim = 11
+        action_dim = args.action_values
         action_min = float(env.action_space.low[0])
         action_max = float(env.action_space.high[0])
         action_values = [
