@@ -327,7 +327,7 @@ def main():
     checkpoint_file = os.path.join(
         checkpoint_dir, f"{environment_name}_{args.n_steps}.pth"
     )
-    torch.save({
+    checkpoint = {
         "dqn": model.state_dict(),
         "environment": args.environment,
         "map_name": map_name,
@@ -335,8 +335,10 @@ def main():
         "action_dim": action_dim,
         "W": args.W,
         "depth": args.depth,
-        "action_values": action_values,
-    }, checkpoint_file)
+    }
+    if action_values is not None:
+        checkpoint["action_values"] = action_values
+    torch.save(checkpoint, checkpoint_file)
 
 if __name__ == "__main__":
     main()
