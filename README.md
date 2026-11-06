@@ -97,6 +97,16 @@ After training for 100000 steps, you can find results similiar to the image at `
 
 <img src="assets/cliffwalking-v1/cliffwalking-v1.gif" width="512" alt="cliffwalking">
 
+To train a `Pendulum-v1` DQN using 11 evenly spaced discrete torque choices:
+
+```
+python3 -m utils.trainer --config="./configs/pendulum-v1.toml"
+```
+
+After training for 300000 steps, you can find results similar to the image at `./assets/pendulum-v1/pendulum-v1.gif`:
+
+<img src="assets/pendulum-v1/pendulum-v1.gif" width="512" alt="pendulum">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method

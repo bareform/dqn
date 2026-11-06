@@ -29,6 +29,7 @@ def parse_args():
             "taxi-v4",
             "mountaincar-v0",
             "cliffwalking-v1",
+            "pendulum-v1",
         ],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
@@ -146,6 +147,7 @@ def main():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
+    action_values = None
 
     if args.environment == "frozenlake-v1":
         env = gym.make("FrozenLake-v1", map_name=args.map_name, is_slippery=False)
@@ -171,6 +173,16 @@ def main():
         env = gym.make("CliffWalking-v1", max_episode_steps=1000)
         state_dim = env.observation_space.n
         action_dim = env.action_space.n
+    elif args.environment == "pendulum-v1":
+        env = gym.make("Pendulum-v1")
+        state_dim = env.observation_space.shape[0]
+        action_dim = 11
+        action_min = float(env.action_space.low[0])
+        action_max = float(env.action_space.high[0])
+        action_values = [
+            action_min + index * (action_max - action_min) / (action_dim - 1)
+            for index in range(action_dim)
+        ]
 
     env.action_space.seed(args.random_seed)
     state, _ = env.reset(seed=args.random_seed)
@@ -218,12 +230,20 @@ def main():
         )
 
         if random.random() < epsilon:
-            action = env.action_space.sample()
+            if args.environment == "pendulum-v1":
+                action = random.randrange(action_dim)
+            else:
+                action = env.action_space.sample()
         else:
             with torch.no_grad():
                 action = int(model(encode_state(state)).argmax().item())
 
-        next_state, reward, terminated, truncated, _ = env.step(action)
+        env_action = (
+            [action_values[action]]
+            if args.environment == "pendulum-v1"
+            else action
+        )
+        next_state, reward, terminated, truncated, _ = env.step(env_action)
         replay_buffer.append(
             (state, action, reward, next_state, terminated)
         )
@@ -303,6 +323,7 @@ def main():
         "action_dim": action_dim,
         "W": args.W,
         "depth": args.depth,
+        "action_values": action_values,
     }, checkpoint_file)
 
 if __name__ == "__main__":

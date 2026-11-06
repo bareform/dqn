@@ -1,0 +1,25 @@
+[environment]
+environment = "pendulum-v1"
+
+[model]
+depth = 2
+W = 128
+
+[training]
+n_steps = 300000
+learning_rate = 0.0005
+buffer_size = 50000
+gamma = 0.99
+batch_size = 64
+learning_starts = 1000
+train_frequency = 1
+gradient_steps = 1
+target_update_frequency = 1000
+exploration_rate = 0.2
+exploration_initial_eps = 1.0
+exploration_final_eps = 0.05
+
+random_seed = 0
+
+[evaluation]
+checkpoint_dir = "./checkpoints/"
