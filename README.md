@@ -34,7 +34,7 @@ To train a `FrozenLake-v1-4x4` DQN:
 python3 -m utils.trainer --config="./configs/frozenlake-v1-4x4.toml"
 ```
 
-After training for 100000 steps, you can find results similiar to the image at `./assets/frozenlake-v1/frozenlake-v1-4x4.gif`:
+After training for 100000 steps, you can find results similiar to the gif at `./assets/frozenlake-v1/frozenlake-v1-4x4.gif`:
 
 <img src="assets/frozenlake-v1/frozenlake-v1-4x4.gif" width="512" alt="frozenlake">
 
@@ -44,7 +44,7 @@ To train a `FrozenLake-v1-8x8` DQN:
 python3 -m utils.trainer --config="./configs/frozenlake-v1-8x8.toml"
 ```
 
-After training for 500000 steps, you can find results similiar to the image at `./assets/frozenlake-v1/frozenlake-v1-8x8.gif`:
+After training for 500000 steps, you can find results similiar to the gif at `./assets/frozenlake-v1/frozenlake-v1-8x8.gif`:
 
 <img src="assets/frozenlake-v1/frozenlake-v1-8x8.gif" width="512" alt="frozenlake">
 
@@ -54,7 +54,7 @@ To train a `CartPole-v1` DQN:
 python3 -m utils.trainer --config="./configs/cartpole-v1.toml"
 ```
 
-After training for 100000 steps, you can find results similiar to the image at `./assets/cartpole-v1/cartpole-v1.gif`:
+After training for 100000 steps, you can find results similiar to the gif at `./assets/cartpole-v1/cartpole-v1.gif`:
 
 <img src="assets/cartpole-v1/cartpole-v1.gif" width="512" alt="cartpole">
 
@@ -64,7 +64,7 @@ To train an `Acrobot-v1` DQN:
 python3 -m utils.trainer --config="./configs/acrobot-v1.toml"
 ```
 
-After training for 300000 steps, you can find results similiar to the image at `./assets/acrobot-v1/acrobot-v1.gif`:
+After training for 300000 steps, you can find results similiar to the gif at `./assets/acrobot-v1/acrobot-v1.gif`:
 
 <img src="assets/acrobot-v1/acrobot-v1.gif" width="512" alt="acrobot">
 
@@ -73,7 +73,7 @@ To train a `Taxi-v4` DQN:
 ```
 python3 -m utils.trainer --config="./configs/taxi-v4.toml"
 ```
-After training for 500000 steps, you can find results similiar to the image at `./assets/taxi-v4/taxi-v4.gif`:
+After training for 500000 steps, you can find results similiar to the gif at `./assets/taxi-v4/taxi-v4.gif`:
 
 <img src="assets/taxi-v4/taxi-v4.gif" width="512" alt="taxi">
 
@@ -83,7 +83,7 @@ To train a `MountainCar-v0` DQN:
 python3 -m utils.trainer --config="./configs/mountaincar-v0.toml"
 ```
 
-After training for 120000 steps, you can find results similiar to the image at `./assets/mountaincar-v0/mountaincar-v0.gif`:
+After training for 120000 steps, you can find results similiar to the gif at `./assets/mountaincar-v0/mountaincar-v0.gif`:
 
 <img src="assets/mountaincar-v0/mountaincar-v0.gif" width="512" alt="mountaincar">
 
@@ -93,7 +93,7 @@ To train a `CliffWalking-v1` DQN:
 python3 -m utils.trainer --config="./configs/cliffwalking-v1.toml"
 ```
 
-After training for 100000 steps, you can find results similiar to the image at `./assets/cliffwalking-v1/cliffwalking-v1.gif`:
+After training for 100000 steps, you can find results similiar to the gif at `./assets/cliffwalking-v1/cliffwalking-v1.gif`:
 
 <img src="assets/cliffwalking-v1/cliffwalking-v1.gif" width="512" alt="cliffwalking">
 
@@ -103,7 +103,7 @@ To train a `Pendulum-v1` DQN using 11 evenly spaced discrete torque choices:
 python3 -m utils.trainer --config="./configs/pendulum-v1.toml"
 ```
 
-After training for 300000 steps, you can find results similar to the image at `./assets/pendulum-v1/pendulum-v1.gif`:
+After training for 300000 steps, you can find results similar to the gif at `./assets/pendulum-v1/pendulum-v1.gif`:
 
 <img src="assets/pendulum-v1/pendulum-v1.gif" width="512" alt="pendulum">
 
