@@ -107,6 +107,16 @@ After training for 300000 steps, you can find results similar to the gif at `./a
 
 <img src="assets/pendulum-v1/pendulum-v1.gif" width="512" alt="pendulum">
 
+To train a `Blackjack-v1` DQN:
+
+```
+python3 -m utils.trainer --config="./configs/blackjack-v1.toml"
+```
+
+After training for 300000 steps, you can find results similar to the GIF at `./assets/blackjack-v1/blackjack-v1.gif`:
+
+<img src="assets/blackjack-v1/blackjack-v1.gif" width="512" alt="blackjack">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 
 ## Method

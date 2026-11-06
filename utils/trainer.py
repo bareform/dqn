@@ -30,6 +30,7 @@ def parse_args():
             "mountaincar-v0",
             "cliffwalking-v1",
             "pendulum-v1",
+            "blackjack-v1",
         ],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
@@ -183,6 +184,10 @@ def main():
             action_min + index * (action_max - action_min) / (action_dim - 1)
             for index in range(action_dim)
         ]
+    elif args.environment == "blackjack-v1":
+        env = gym.make("Blackjack-v1")
+        state_dim = 3
+        action_dim = env.action_space.n
 
     env.action_space.seed(args.random_seed)
     state, _ = env.reset(seed=args.random_seed)
@@ -193,6 +198,13 @@ def main():
                 torch.as_tensor(observation, dtype=torch.long, device=device),
                 num_classes=state_dim,
             ).float()
+        if args.environment == "blackjack-v1":
+            player_sum, dealer_card, usable_ace = observation
+            return torch.tensor(
+                [player_sum / 31, dealer_card / 10, float(usable_ace)],
+                dtype=torch.float32,
+                device=device,
+            )
         return torch.as_tensor(observation, dtype=torch.float32, device=device)
 
     model = DQN(
