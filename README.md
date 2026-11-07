@@ -23,6 +23,12 @@ cd vit
   - pygame
   - numpy
   - torch
+
+`LunarLander-v3` additionally requires Gymnasium's Box2D dependencies:
+
+```console
+pip install "gymnasium[box2d]"
+```
     
 </details>
 
@@ -116,6 +122,17 @@ python3 -m utils.trainer --config="./configs/blackjack-v1.toml"
 After training for 300000 steps, you can find results similar to the GIF at `./assets/blackjack-v1/blackjack-v1.gif`:
 
 <img src="assets/blackjack-v1/blackjack-v1.gif" width="512" alt="blackjack">
+
+To train a `LunarLander-v3` DQN:
+
+```console
+python3 -m utils.trainer --config="./configs/lunarlander-v3.toml"
+```
+
+After training for 500000 steps, you can find results similar to the GIF at
+`./assets/lunarlander-v3/lunarlander-v3.gif`:
+
+<img src="assets/lunarlander-v3/lunarlander-v3.gif" width="512" alt="lunarlander">
 
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
 

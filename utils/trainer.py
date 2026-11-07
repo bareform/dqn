@@ -31,6 +31,7 @@ def parse_args():
             "cliffwalking-v1",
             "pendulum-v1",
             "blackjack-v1",
+            "lunarlander-v3",
         ],
         default="frozenlake-v1",
         help="Environment to train on (default: frozenlake-v1).",
@@ -193,6 +194,10 @@ def main():
     elif args.environment == "blackjack-v1":
         env = gym.make("Blackjack-v1")
         state_dim = 3
+        action_dim = env.action_space.n
+    elif args.environment == "lunarlander-v3":
+        env = gym.make("LunarLander-v3")
+        state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.n
 
     env.action_space.seed(args.random_seed)
