@@ -10,8 +10,8 @@ conda update -n base -c defaults conda
 conda env create -f dependencies/environment.yml
 conda activate bareform
 
-git clone https://github.com/bareform/vit.git
-cd vit
+git clone https://github.com/bareform/dqn.git
+cd dqn
 ```
 
 <details>
