@@ -134,7 +134,7 @@ After training for 500000 steps, you can find results similar to the GIF at
 
 <img src="assets/lunarlander-v3/lunarlander-v3.gif" width="512" alt="lunarlander">
 
-You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to generate some samples.
+You can download the pre-trained models [here](https://huggingface.co/luethan2025/dqn) and use the provided Jupyter Notebook `inference.ipynb` to visualize the agents.
 
 ## Method
 
